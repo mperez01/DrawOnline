@@ -11,6 +11,10 @@
 
 <body>
 
+    <input type="button" value="Save" onclick="saveCanvas();">
+    <input hidden type="button" value="Load" onclick="loadCanvas();">
+    <input type="button" value="Clear" onclick="clearCanvas();">
+    <input type="text" value="" id="urlCanvas">
     <div id="menu">
 
         <div class="input-color-container">
@@ -24,6 +28,7 @@
         <div id="menu-type">
             <input id="pen" class="btn" type="button" value="Pen">
             <input class="btn" type="button" value="Pencil">
+            <input class="btn" type="button" value="Rubber">
         </div>
     </div>
     <div id="paint">
