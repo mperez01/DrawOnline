@@ -12,12 +12,17 @@ html {
     height: 100%;
 }
 
-#menu {
-   text-align: center;
+#textInput {
+    width: 20%;
 }
 
-#textInput {
-    vertical-align: 5px;
+#menu {
+    position: fixed;
+    background-color: rgba(245, 245, 245, 0.808);
+    
+}
+.hide {
+    display: none;
 }
 
 .active {

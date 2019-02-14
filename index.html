@@ -11,24 +11,27 @@
 
 <body>
 
-    <input type="button" value="Save" onclick="saveCanvas();">
-    <input hidden type="button" value="Load" onclick="loadCanvas();">
-    <input type="button" value="Clear" onclick="clearCanvas();">
-    <input type="text" value="" id="urlCanvas">
-    <div id="menu">
+    <input type="button" value="Menu" id="showMenu">
+    <div id="menu" class="hide">
+        <input type="button" value="Save" onclick="saveCanvas();">
+        <input hidden type="button" value="Load" onclick="loadCanvas();">
+        <input type="button" value="Clear" onclick="clearCanvas();">
+        <input type="text" value="" id="urlCanvas">
+        <div id="menu-draw">
 
-        <div class="input-color-container">
-            <input id="color" class="input-color" type="color">
+            <div class="input-color-container">
+                <input id="color" class="input-color" type="color">
 
-        </div>
-        <div>
-            <input id="lineWidth" type="range" name="points" min="1" max="10">
-            <input type="number" id="textInput">
-        </div>
-        <div id="menu-type">
-            <input id="pen" class="btn" type="button" value="Pen">
-            <input class="btn" type="button" value="Pencil">
-            <input class="btn" type="button" value="Rubber">
+            </div>
+            <div>
+                <input id="lineWidth" type="range" name="points" min="1" max="10">
+                <input type="number" id="textInput">
+            </div>
+            <div id="menu-type">
+                <input id="pen" class="btn" type="button" value="Pen">
+                <input class="btn" type="button" value="Pencil">
+                <input class="btn" type="button" value="Rubber">
+            </div>
         </div>
     </div>
     <div id="paint">

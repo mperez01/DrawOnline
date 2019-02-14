@@ -56,14 +56,19 @@ $(() => {
         }
     })
 
-    $("#myCanvas").on("mousemove", function (e) {
+    $("#myCanvas, #menu").on("mousemove", function (e) {
         mouse.x = e.pageX - this.offsetLeft;
         mouse.y = e.pageY - this.offsetTop;
+        console.log(mouse.x, mouse.y);
     })
 
     $("#myCanvas").on("click", function () {
         ctx.moveTo(mouse.x, mouse.y);
         onPaint();
+    })
+
+    $("#showMenu").on("click", function () {
+        $("#menu").toggleClass("hide");
     })
 });
 
@@ -73,7 +78,7 @@ function saveCanvas() {
     var copyText = document.getElementById("urlCanvas");
     copyText.select();
     document.execCommand("copy");
-    alert("The drawing has been saved.\nURL copied to the clipboard")
+    alert("The drawing has been saved\nURL copied to the clipboard")
 }
 
 function loadCanvas() {
@@ -100,17 +105,18 @@ function startPaint() {
 
     canvas.style.cssText = "border: 1px solid black";
 
-    canvas.addEventListener('mousedown', function () {
+    document.addEventListener('mousedown', function () {
         ctx.beginPath();
         ctx.moveTo(mouse.x, mouse.y);
-        canvas.addEventListener('mousemove', onPaint, false);
+        document.addEventListener('mousemove', onPaint, false);
     }, false)
 
     document.addEventListener('mouseup', function () {
         console.log("Mouseup");
-        canvas.removeEventListener('mousemove', onPaint, false);
+        document.removeEventListener('mousemove', onPaint, false);
     }, false);
 
+    
     ctx.lineWidth = document.getElementById('lineWidth').value;
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
@@ -119,6 +125,7 @@ function startPaint() {
 }
 
 function setDefaultValues() {
+    $("#menu").addClass("hide");
     $("#lineWidth").val("2");
     $("#color").val("#FFFFF")
     $("#textInput").val($("#lineWidth").val());
