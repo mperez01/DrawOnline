@@ -12,7 +12,7 @@ $(window).resize(function () {
 });
 
 $(() => {
-
+    setDefaultValues();
     startPaint();
     $("#color").on('change', function () {
         console.log($("#color").val());
@@ -61,7 +61,6 @@ $(() => {
         mouse.y = e.pageY - this.offsetTop;
     })
 
-    //Draw a dot
     $("#myCanvas").on("click", function () {
         ctx.moveTo(mouse.x, mouse.y);
         onPaint();
@@ -71,25 +70,18 @@ $(() => {
 function saveCanvas() {
     console.log(canvas.toDataURL());
     $("#urlCanvas").val(canvas.toDataURL());
-
     var copyText = document.getElementById("urlCanvas");
-
-    /* Select the text field */
     copyText.select();
-
-    /* Copy the text inside the text field */
     document.execCommand("copy");
-
-    /* Alert the copied text */
     alert("The drawing has been saved.\nURL copied to the clipboard")
 }
 
 function loadCanvas() {
-    
+
 }
 
 function clearCanvas() {
-    startPaint();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function onPaint() {
@@ -98,7 +90,6 @@ function onPaint() {
 };
 
 function startPaint() {
-    setDefaultValues();
     canvas = document.getElementById('myCanvas');
     console.log(canvas);
     ctx = canvas.getContext('2d');
