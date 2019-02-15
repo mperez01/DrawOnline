@@ -2,16 +2,16 @@
 
 var mouse = { x: 0, y: 0 };
 var mouseDown = false;
-var canvas, ctx, paintElement;
-
-$(window).resize(function () {
-    console.log("resize");
-    $("#paint").css({ "width": "100%", "height": "100%" });
-});
+var canvas, ctx, paintElement, isStart;
 
 $(() => {
+    isStart = false;
     setDefaultValues();
     startPaint();
+
+    $(window).resize(function () {
+        $("#paint").css({ "width": "100%", "height": "100%" });
+    });
 
     $("#color").on('change', function () {
         console.log($("#color").val());
@@ -58,7 +58,7 @@ $(() => {
     $("#myCanvas, #menu").on("mousemove", function (e) {
         mouse.x = e.pageX - this.offsetLeft;
         mouse.y = e.pageY - this.offsetTop;
-        console.log(mouse.x, mouse.y);
+        //console.log(mouse.x, mouse.y);
     })
 
     $("#myCanvas").on("click", function () {
@@ -72,8 +72,8 @@ $(() => {
 });
 
 function saveCanvas() {
-    console.log(canvas.toDataURL());
     $("#urlCanvas").val(canvas.toDataURL());
+
     var copyText = document.getElementById("urlCanvas");
     copyText.select();
     document.execCommand("copy");
@@ -81,11 +81,13 @@ function saveCanvas() {
 }
 
 function loadCanvas() {
-
+    var sign = prompt("Add canvas URL:");
 }
 
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function onPaint() {
@@ -127,6 +129,7 @@ function startPaint() {
     ctx.lineCap = 'round';
     ctx.strokeStyle = document.getElementById('color').value;
     ctx.globalAlpha = 1;
+    isStart = true;
 }
 
 function setDefaultValues() {
