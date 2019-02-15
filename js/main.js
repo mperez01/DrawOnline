@@ -57,6 +57,8 @@ $(() => {
     })
 
     $("#myCanvas, #menu").on("mousemove", function (e) {
+        e.preventDefault();
+        //e.stopPropagation();
         mouse.x = e.pageX - this.offsetLeft;
         mouse.y = e.pageY - this.offsetTop;
         console.log(mouse.x, mouse.y);
@@ -110,6 +112,15 @@ function startPaint() {
         ctx.moveTo(mouse.x, mouse.y);
         document.addEventListener('mousemove', onPaint, false);
     }, false)
+
+    canvas.addEventListener("touchmove", function (e) {
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousemove", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas.dispatchEvent(mouseEvent);
+    }, false);
 
     document.addEventListener('mouseup', function () {
         console.log("Mouseup");
