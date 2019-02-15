@@ -1,7 +1,5 @@
 "use strict";
-/**
- * por qué no se r
- */
+
 var mouse = { x: 0, y: 0 };
 var mouseDown = false;
 var canvas, ctx, paintElement;
@@ -14,12 +12,13 @@ $(window).resize(function () {
 $(() => {
     setDefaultValues();
     startPaint();
+
     $("#color").on('change', function () {
         console.log($("#color").val());
         ctx.strokeStyle = $("#color").val();
     })
 
-    $("#lineWidth").on('change', function () {
+    $("#lineWidth").on('input', function () {
         console.log($("#lineWidth").val())
         ctx.lineWidth = $("#lineWidth").val();
         $("#textInput").val($("#lineWidth").val());
@@ -105,10 +104,15 @@ function startPaint() {
 
     canvas.style.cssText = "border: 1px solid black";
 
-    document.addEventListener('mousedown', function () {
+    document.addEventListener('mousedown', function (event) {
         ctx.beginPath();
         ctx.moveTo(mouse.x, mouse.y);
-        document.addEventListener('mousemove', onPaint, false);
+        console.log(event.target.id);
+        if ((event.target.id.toString() !== "lineWidth") && (event.target.id.toString() !== "textInput")) {
+            event.preventDefault();
+            console.log(event);
+            document.addEventListener('mousemove', onPaint, false);
+        }
     }, false)
 
     document.addEventListener('mouseup', function () {
