@@ -72,6 +72,15 @@ $(() => {
 });
 
 function saveCanvas() {
+    $("#urlCanvas").val(canvas.toDataURL());
+
+    var copyText = document.getElementById("urlCanvas");
+    copyText.select();
+    document.execCommand("copy");
+    alert("The drawing has been saved\nURL copied to the clipboard");
+}
+
+function exportCanvas() {
     var link = document.createElement("a");
     link.href = canvas.toDataURL();
     link.download = "draw.png";
@@ -82,9 +91,9 @@ function saveCanvas() {
 function loadCanvas() {
     var sign = prompt("Add canvas URL:");
     let loadImg = new Image();
-    loadImg.onload = ()=>{
-        ctx.drawImage(loadImg,0,0);
-    }
+    loadImg.onload = () => {
+        ctx.drawImage(loadImg, 0, 0);
+    };
     loadImg.src = sign;
 }
 
