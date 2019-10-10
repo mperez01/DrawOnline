@@ -69,6 +69,17 @@ $(() => {
     $("#showMenu").on("click", function() {
         $("#menu").toggleClass("hide");
     });
+
+    $("#openFile").on("change", function() {
+        var files = $(this)[0].files;
+        if (files.length > 0) {
+            let loadImg = new Image();
+            loadImg.onload = () => {
+                ctx.drawImage(loadImg, 0, 0);
+            };
+            loadImg.src = window.URL.createObjectURL(files[0]);
+        }
+    });
 });
 
 function saveCanvas() {
@@ -87,6 +98,8 @@ function exportCanvas() {
     document.body.appendChild(link);
     link.click();
 }
+
+function openCanvas() {}
 
 function loadCanvas() {
     var sign = prompt("Add canvas URL:");
