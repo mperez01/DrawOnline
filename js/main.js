@@ -82,6 +82,11 @@ function saveCanvas() {
 
 function loadCanvas() {
     var sign = prompt("Add canvas URL:");
+    let loadImg = new Image();
+    loadImg.onload = ()=>{
+        ctx.drawImage(loadImg,0,0);
+    }
+    loadImg.src = sign;
 }
 
 function clearCanvas() {
