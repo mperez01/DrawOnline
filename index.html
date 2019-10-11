@@ -13,6 +13,9 @@
 
     <input type="button" value="Menu" id="showMenu">
     <div id="menu" class="hide">
+        <input type="button" value="Export as PNG" onclick="exportCanvas();">
+        <input type="button" value="Load PNG" onclick="document.getElementById('openFile').click()">
+        <input type="file" style="display: none;" accept=".png" id="openFile" value="Open" onclick="openCanvas();">
         <input type="button" value="Save" onclick="saveCanvas();">
         <input type="button" value="Load" onclick="loadCanvas();">
         <input type="button" value="Clear" onclick="clearCanvas();">
